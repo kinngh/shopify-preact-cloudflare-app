@@ -7,18 +7,23 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "deploy": "bun run build; wrangler deploy",
+    "------> Misc <------": "",
     "pretty": "prettier --write ./",
     "update": "ncu -u"
   },
   "dependencies": {
     "@attayjs/client": "^0.0.1",
+    "@cloudflare/workers-types": "^4.20260103.0",
     "preact": "^10.28.1",
     "preact-iso": "^2.11.1"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.17.1",
     "@preact/preset-vite": "^2.10.2",
     "npm-check-updates": "^19.2.1",
     "prettier": "^3.7.4",
-    "vite": "^7.3.0"
+    "vite": "^7.3.0",
+    "wrangler": "^4.54.0"
   }
 }
