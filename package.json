@@ -1,0 +1,24 @@
+{
+  "name": "shopify-preact-cloudflare-app",
+  "version": "2026.01.02",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "pretty": "prettier --write ./",
+    "update": "ncu -u"
+  },
+  "dependencies": {
+    "@attayjs/client": "^0.0.1",
+    "preact": "^10.28.1",
+    "preact-iso": "^2.11.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "npm-check-updates": "^19.2.1",
+    "prettier": "^3.7.4",
+    "vite": "^7.3.0"
+  }
+}
