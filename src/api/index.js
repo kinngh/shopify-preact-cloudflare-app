@@ -1,24 +1,11 @@
-//!
-//TODO: Do I want to write `@attayjs/server` for routing on CF workers, or use itty-router?
-//!
+import { AutoRouter } from "itty-router";
 
-export default {
-  /**
-   * @param {Request} request
-   * @param {Object} env //! Should probably be doing something to read from env and spitting out types?
-   * @param {ExecutionContext} ctx
-   * @returns {Response}
-   */
-  fetch(request, env, ctx) {
-    const url = new URL(request.url);
-    console.log(url);
+const router = AutoRouter({ base: "/api" });
 
-    if (url.pathname.startsWith("/api")) {
-      return Response.json({
-        name: "Cloudflare",
-      });
-    }
 
-    return new Response(null, { status: 404 });
-  },
-};
+//TODO: File based routing + middleware
+router
+  .get("/json", () => ({ foo: "bar" }))
+  .all("*", () => ({ message: "404 Not found" }));
+
+export default { ...router };
