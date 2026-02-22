@@ -43,12 +43,16 @@ export function withMiddleware(...functions) {
   const middlewares = functions.slice(0, -1);
 
   if (typeof handler !== "function") {
-    throw new TypeError("withMiddleware expects the final argument to be a function");
+    throw new TypeError(
+      "withMiddleware expects the final argument to be a function"
+    );
   }
 
   for (const middleware of middlewares) {
     if (typeof middleware !== "function") {
-      throw new TypeError("withMiddleware expects every middleware to be a function");
+      throw new TypeError(
+        "withMiddleware expects every middleware to be a function"
+      );
     }
   }
 

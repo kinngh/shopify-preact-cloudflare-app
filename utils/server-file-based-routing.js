@@ -94,7 +94,12 @@ function getPathSpecificityMetrics(path) {
       metrics.score += 3;
       return metrics;
     },
-    { score: 0, segmentCount: segments.length, wildcardCount: 0, dynamicCount: 0 },
+    {
+      score: 0,
+      segmentCount: segments.length,
+      wildcardCount: 0,
+      dynamicCount: 0,
+    }
   );
 }
 
@@ -163,7 +168,7 @@ export default function registerFileBasedRoutes(router, routeModules) {
     const handler = routeModule?.default;
     if (typeof handler !== "function") {
       throw new TypeError(
-        `Route file "${filePath}" must export a default handler function`,
+        `Route file "${filePath}" must export a default handler function`
       );
     }
 
