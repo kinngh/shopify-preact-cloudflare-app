@@ -1,3 +1,4 @@
+import { useRouter } from "@attayjs/client";
 import { useState } from "preact/hooks";
 
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
   }
 
   const [dataState, setDataState] = useState("");
+  const router = useRouter();
   return (
     <>
       <s-page heading="Preact Template">
@@ -18,13 +20,21 @@ const HomePage = () => {
                 <s-text>Content: {dataState}</s-text>
               </>
             ) : null}
-            <s-stack direction="inline" justifyContent="end">
+            <s-stack direction="inline" justifyContent="end" gap="base">
               <s-button
+                variant="primary"
                 onClick={() => {
                   getData();
                 }}
               >
                 Make Call
+              </s-button>
+              <s-button
+                onClick={() => {
+                  router.push("/page2");
+                }}
+              >
+                Page 2
               </s-button>
             </s-stack>
           </s-stack>

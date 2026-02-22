@@ -11,14 +11,15 @@ import "@shopify/polaris-types";
 type PolarisIntrinsicElements = globalThis.JSX.IntrinsicElements;
 
 type PolarisElementsWithPreactChildren = {
-  [K in keyof PolarisIntrinsicElements as K extends `s-${string}` ? K : never]:
-    PolarisIntrinsicElements[K] extends { children?: unknown }
-      ? Omit<PolarisIntrinsicElements[K], "children"> & {
-          children?: ComponentChildren;
-        }
-      : PolarisIntrinsicElements[K] & {
-          children?: ComponentChildren;
-        };
+  [K in keyof PolarisIntrinsicElements as K extends `s-${string}`
+    ? K
+    : never]: PolarisIntrinsicElements[K] extends { children?: unknown }
+    ? Omit<PolarisIntrinsicElements[K], "children"> & {
+        children?: ComponentChildren;
+      }
+    : PolarisIntrinsicElements[K] & {
+        children?: ComponentChildren;
+      };
 };
 
 declare module "preact/jsx-runtime" {
