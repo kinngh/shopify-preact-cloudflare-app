@@ -1,5 +1,5 @@
 import { AutoRouter } from "itty-router";
-import registerFileBasedRoutes from "../../utils/server-file-based-routing";
+import registerFileBasedRoutes from "@/utils/server-file-based-routing.js";
 
 const router = AutoRouter({ base: "/api" });
 
