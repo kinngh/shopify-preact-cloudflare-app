@@ -1,5 +1,3 @@
-//? Testing if CF functions support is proper in local
-
 import { useState } from "preact/hooks";
 
 const HomePage = () => {
@@ -11,18 +9,27 @@ const HomePage = () => {
   const [dataState, setDataState] = useState("");
   return (
     <>
-      <p>Home Page</p>
-      <button
-        onClick={async () => {
-          await getData();
-        }}
-      >
-        Make call
-      </button>
-      <br />
-      <br />
-      <br />
-      <p>{dataState}</p>
+      <s-page heading="Preact Template">
+        <s-section>
+          <s-stack direction="block">
+            <s-text>Testing out the new template</s-text>
+            {dataState ? (
+              <>
+                <s-text>Content: {dataState}</s-text>
+              </>
+            ) : null}
+            <s-stack direction="inline" justifyContent="end">
+              <s-button
+                onClick={() => {
+                  getData();
+                }}
+              >
+                Make Call
+              </s-button>
+            </s-stack>
+          </s-stack>
+        </s-section>
+      </s-page>
     </>
   );
 };

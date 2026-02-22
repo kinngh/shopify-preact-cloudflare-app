@@ -6,7 +6,7 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
-    "types": ["@cloudflare/workers-types"],
+    "types": ["@cloudflare/workers-types", "@shopify/polaris-types"],
     "baseUrl": ".",
 
     /* Preact Config */
