@@ -1,6 +1,28 @@
 const SUPPORTED_METHODS = new Set(["get", "post", "put", "delete", "options"]);
 
 /**
+ * Request object enriched by itty-router (for example with `params`, `query`, etc.).
+ *
+ * @typedef {Request & {
+ *   params?: Record<string, string>,
+ *   query?: Record<string, string>,
+ *   route?: string,
+ *   [key: string]: unknown,
+ * }} RouteRequest
+ */
+
+/**
+ * Additional worker/runtime arguments passed by itty-router after `request`.
+ * In Cloudflare Workers, this is typically `(env, executionCtx)`.
+ *
+ * @typedef {unknown[]} RouteArgs
+ */
+
+/**
+ * @typedef {(request: RouteRequest, ...args: RouteArgs) => unknown | Promise<unknown>} RouteHandler
+ */
+
+/**
  * @typedef {{ default?: unknown }} RouteModule
  */
 
@@ -9,7 +31,7 @@ const SUPPORTED_METHODS = new Set(["get", "post", "put", "delete", "options"]);
  *   method: "get" | "post" | "put" | "delete" | "options",
  *   path: string,
  *   filePath: string,
- *   handler: Function
+ *   handler: RouteHandler
  * }} ParsedRoute
  */
 
@@ -112,13 +134,19 @@ function compareRoutes(a, b) {
  * Registers routes into an itty router from a Vite glob module map.
  *
  * Expected route module shape:
- * `export default function handler(request, ...args) {}`
+ * `export default function handler(request, env, executionCtx) {}`
  *
  * Path convention:
  * - Folders become route segments (`todos/:id/:action?`)
  * - File name becomes method (`get.js`, `post.js`, `put.js`, `delete.js`, `options.js`)
  *
- * @param {{ [method: string]: Function }} router
+ * @param {{
+ *   get: (path: string, handler: RouteHandler) => unknown,
+ *   post: (path: string, handler: RouteHandler) => unknown,
+ *   put: (path: string, handler: RouteHandler) => unknown,
+ *   delete: (path: string, handler: RouteHandler) => unknown,
+ *   options: (path: string, handler: RouteHandler) => unknown,
+ * }} router
  * @param {Record<string, RouteModule>} routeModules
  * @returns {ParsedRoute[]}
  */

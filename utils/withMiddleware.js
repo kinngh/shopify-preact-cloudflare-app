@@ -1,20 +1,38 @@
 /**
- * @template {unknown[]} TArgs
- * @typedef {(request: Request, ...args: TArgs) => unknown | Promise<unknown>} RouteHandler
+ * Additional worker/runtime arguments passed by itty-router after `request`.
+ * In Cloudflare Workers, this is typically `(env, executionCtx)`.
+ *
+ * @typedef {unknown[]} RouteArgs
  */
 
 /**
- * @template {unknown[]} TArgs
- * @typedef {(request: Request, ...args: TArgs) => unknown | Promise<unknown> | undefined} Middleware
+ * Request object enriched by itty-router (for example with `params`, `query`, etc.).
+ *
+ * @typedef {Request & {
+ *   params?: Record<string, string>,
+ *   query?: Record<string, string>,
+ *   route?: string,
+ *   [key: string]: unknown,
+ * }} RouteRequest
+ */
+
+/**
+ * @typedef {(request: RouteRequest, ...args: RouteArgs) => unknown | Promise<unknown>} RouteHandler
+ */
+
+/**
+ * @typedef {(request: RouteRequest, ...args: RouteArgs) => unknown | Promise<unknown> | undefined} Middleware
  */
 
 /**
  * Composes middlewares with a final route handler.
  * Middlewares execute in order and can short-circuit by returning any value other than `undefined`.
  *
- * @template {unknown[]} TArgs
- * @param {...(Middleware<TArgs> | RouteHandler<TArgs>)} functions
- * @returns {RouteHandler<TArgs>}
+ * Handler signature:
+ * `handler(request, env, executionCtx, ...rest)`
+ *
+ * @param {...(Middleware | RouteHandler)} functions
+ * @returns {RouteHandler}
  */
 export function withMiddleware(...functions) {
   if (functions.length === 0) {
