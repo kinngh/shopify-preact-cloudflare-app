@@ -155,7 +155,7 @@ function compareRoutes(a, b) {
  * @param {Record<string, RouteModule>} routeModules
  * @returns {ParsedRoute[]}
  */
-export default function registerFileBasedRoutes(router, routeModules) {
+export default function serverRouter(router, routeModules) {
   /** @type {ParsedRoute[]} */
   const parsedRoutes = [];
 

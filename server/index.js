@@ -1,14 +1,19 @@
-import registerFileBasedRoutes from "@/utils/server-file-based-routing.js";
+import serverRouter from "@/server/serverRouter.js";
 import { AutoRouter } from "itty-router";
 
-const router = AutoRouter({ base: "/api" });
-const routeModules = import.meta.glob("./**/{get,post,put,delete,options}.js", {
-  eager: true,
-});
+const router = AutoRouter();
+const routeModules = import.meta.glob(
+  "./api/**/{get,post,put,delete,options}.js",
+  {
+    eager: true,
+  }
+);
 
-registerFileBasedRoutes(router, routeModules);
+serverRouter(router, routeModules);
 
 //Register routes normally
-router.all("*", () => ({ message: "404 Not found" }));
+router.all("*", () =>
+  Response.json({ message: "404 Not found" }, { status: 404 })
+);
 
 export default { ...router };
