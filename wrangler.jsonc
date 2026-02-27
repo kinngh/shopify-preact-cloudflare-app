@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // https://developers.cloudflare.com/workers/wrangler/configuration/
-  "name": "shopify-app",
+  "name": "kinngh-preact-shopify-app",
   "main": "server/index.js",
   "compatibility_date": "2026-01-03",
   "assets": {
