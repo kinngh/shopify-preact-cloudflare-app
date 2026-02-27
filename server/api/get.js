@@ -8,11 +8,16 @@
  *   [key: string]: unknown,
  * }} ApiRouteRequest
  *
- * @param {ApiRouteRequest} context
+ * @param {ApiRouteRequest} request
+ * @param {Record<string, unknown>} env
  * @returns {Response}
  */
-function handler(context) {
-  return Response.json({ message: "hi from /api" });
+function handler(request, env) {
+  console.log(env.MY_VARIABLE);
+  return Response.json({
+    message: "hi from /api",
+    myVariable: env?.MY_VARIABLE,
+  });
 }
 
 export default handler;

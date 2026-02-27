@@ -13,6 +13,6 @@
     "enabled": false,
   },
   "placement": { "mode": "smart" },
-  // "vars": {  "MY_VARIABLE": "production_value" }
+  "vars": { "MY_VARIABLE": "production_value" },
   // "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
 }
