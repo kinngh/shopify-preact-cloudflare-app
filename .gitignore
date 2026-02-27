@@ -1,6 +1,5 @@
 package-lock.json
 .wrangler/
-wrangler.jsonc
 
 *.env
 # Logs
