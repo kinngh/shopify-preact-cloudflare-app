@@ -14,9 +14,10 @@
  */
 function handler(request, env) {
   console.log(env.MY_VARIABLE);
+
   return Response.json({
     message: "hi from /api",
-    myVariable: env?.MY_VARIABLE,
+    variable: env?.MY_VARIABLE ?? "None found",
   });
 }
 
