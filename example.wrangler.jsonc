@@ -4,6 +4,7 @@
   "name": "shopify-app",
   "main": "server/index.js",
   "compatibility_date": "2026-01-03",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "single-page-application",
